@@ -11,7 +11,7 @@ When /^I generate views for controller "([^\"]*)" and model "([^\"]*)"$/ do |con
 end
 
 When /^I generate text views for "([^\"]*)"/ do |controller_path|
-  generate_views(controller_path, :themed_type => :text)
+  generate_views(controller_path, "--themed-type=text")
 end
 
 Then /^I should have a view named "([^\"]*)"$/ do |view_path|

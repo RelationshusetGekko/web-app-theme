@@ -31,7 +31,7 @@ Feature: Layout generation
     And I generate a theme choosing the "drastic-dark" theme
     Then I should have a stylesheet named "themes/drastic-dark/style.css"
   
-  # script/generate theme --theme=bec --no_layout
+  # script/generate theme --theme=bec --no-layout
   Scenario: Generate only stylesheets without layout
     Given I have a new rails app
     And I have no layouts
@@ -39,7 +39,7 @@ Feature: Layout generation
     Then I should have a stylesheet named "themes/bec/style.css"
     But I should not have any layouts
   
-  # script/generate theme --app_name="My New Application"
+  # script/generate theme --app-name="My New Application"
   Scenario: Generate layout with application name
     Given I have a new rails app
     And I have no layouts

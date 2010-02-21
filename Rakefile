@@ -2,7 +2,10 @@ require "rubygems"
 require "cucumber/rake/task"
 require "spec/rake/spectask"
 
-Cucumber::Rake::Task.new
+Cucumber::Rake::Task.new do |t|
+  t.cucumber_opts = "--format pretty"
+end
+
 
 Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList['test/**/*_spec.rb']

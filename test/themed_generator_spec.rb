@@ -1,10 +1,14 @@
 require File.dirname(__FILE__) + "/spec_helper"
 
+web_app_theme_root  = File.join(File.dirname(__FILE__), "/../")
+tmp_rails_app_name  = "tmp_rails_app"
+tmp_rails_app_root  = File.join(web_app_theme_root, tmp_rails_app_name)
+
 describe ThemedGenerator, "with 'script/generate themed posts'" do 
   before do
     Post = Class.new
     Post.stub!(:columns).and_return([])
-    options = {:destination => File.dirname(__FILE__), :quiet => true, :source => File.dirname(__FILE__)}
+    options = {:quiet => true, :source => File.dirname(__FILE__), :destination_root => tmp_rails_app_root}
     @generator = ThemedGenerator.new(["posts", "post"], options)
     @generator.manifest
   end
@@ -13,7 +17,7 @@ describe ThemedGenerator, "with 'script/generate themed posts'" do
     Object::send(:remove_const, :Post)
   end
   
-  it "should set the right controller_routing_path" do            
+  it "should set the right controller_routing_path" do          
     @generator.instance_variable_get("@controller_routing_path").should == "posts"
   end
   
@@ -80,7 +84,7 @@ describe ThemedGenerator, "with 'script/generate themed admin/gallery_items pict
   before do
     Picture = Class.new
     Picture.stub!(:columns).and_return([])
-    options = {:destination => File.dirname(__FILE__), :quiet => true, :source => File.dirname(__FILE__)}
+    options = {:quiet => true, :source => File.dirname(__FILE__), :destination_root => tmp_rails_app_root}
     @generator = ThemedGenerator.new(["admin/gallery_items", "picture"], options)
     @generator.manifest
   end

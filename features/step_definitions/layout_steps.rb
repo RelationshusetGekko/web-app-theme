@@ -19,7 +19,7 @@ Given /^I generate a theme with name "([^\"]*)"$/ do |name|
 end
 
 Given /^I generate a theme choosing the "([^\"]*)" theme$/ do |theme_name|
-  generate_layout(:theme => theme_name)
+  generate_layout("--theme=#{theme_name}")
 end
 
 Then /^I should have a layout named "([^\"]*)"$/ do |filename|
@@ -35,7 +35,7 @@ Then /^I should have an image named "([^\"]*)"$/ do |filename|
 end
 
 Given /^I generate a theme without layout choosing the "([^\"]*)" theme$/ do |theme_name|
-  generate_layout(:theme => theme_name, :no_layout => true )
+  generate_layout("--no-layout", "--theme=#{theme_name}")
 end
 
 Then /^I should not have any layouts$/ do
@@ -43,7 +43,7 @@ Then /^I should not have any layouts$/ do
 end
 
 Given /^I generate a theme with application name "([^\"]*)"$/ do |name|
-  generate_layout(:app_name => name )
+  generate_layout("--app-name=#{name}")
 end
 
 Then /^the layout "([^\"]*)" should have "([^\"]*)" as page title$/ do |layout, title|
@@ -51,7 +51,7 @@ Then /^the layout "([^\"]*)" should have "([^\"]*)" as page title$/ do |layout, 
 end
 
 Given /^I generate a theme for signin and signup$/ do
-  generate_layout(:layout_type => :sign)
+  generate_layout("--type=sign")
 end
 
 Then /^I should have a layout named "([^\"]*)" with just a box$/ do |layout|

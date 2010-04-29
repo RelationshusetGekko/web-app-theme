@@ -54,9 +54,7 @@ module WebAppTheme
     def manifest_for_crud
       @columns = []
       empty_directory(File.join('app/views', @controller_file_path))
-      puts "1"
       template('view_tables.html.erb',  File.join("app/views", @controller_file_path, "index.html.erb"))
-      puts "2"
       template('view_new.html.erb',     File.join("app/views", @controller_file_path, "new.html.erb"))
       template('view_edit.html.erb',    File.join("app/views", @controller_file_path, "edit.html.erb"))
       template('view_form.html.erb',    File.join("app/views", @controller_file_path, "_form.html.erb"))

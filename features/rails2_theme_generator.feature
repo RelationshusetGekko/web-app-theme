@@ -16,10 +16,10 @@ Feature: Rails 2 layout generation
       """
     And I cd to "rails-2-app"
     And I symlink this repo to "vendor/plugins/web-app-theme"
+    And I have no layouts
+    And I have no stylesheets
     
-    Scenario: Generate a layout    
-      Given I have no layouts
-      And I have no stylesheets
+    Scenario: Generate a layout
       When I successfully run "ruby script/generate theme"
       Then the following files should exist:
         | app/views/layouts/application.html.erb |
@@ -32,35 +32,30 @@ Feature: Rails 2 layout generation
         | public/images/web-app-theme/application_edit.png  |
   
     Scenario: Generate a layout with a name
-      Given I have no layouts
-      And I successfully run "ruby script/generate theme admin"
+      When I successfully run "ruby script/generate theme admin"
       Then the following files should exist:
         | app/views/layouts/admin.html.erb |
 
     Scenario: Generate a layout choosing a theme
-      Given I have no stylesheets
-      And I successfully run "ruby script/generate theme --theme='drastic-dark'"
+      When I successfully run "ruby script/generate theme --theme='drastic-dark'"
       Then the following files should exist:
         | public/stylesheets/themes/drastic-dark/style.css |
     
     Scenario: Generate only stylesheets without layout
-      Given I have no layouts
-      And I successfully run "ruby script/generate theme --theme='bec' --no-layout"
+      When I successfully run "ruby script/generate theme --theme='bec' --no-layout"
       Then the following files should exist:
         | public/stylesheets/themes/bec/style.css |
       And the following files should not exist:
         | app/views/layouts/application.html.erb |
     
     Scenario: Generate layout with application name
-      Given I have no layouts
-      And I successfully run "ruby script/generate theme --app_name='MyApp'"
+      When I successfully run "ruby script/generate theme --app_name='AppName'"
       And the following files should exist:
         | app/views/layouts/application.html.erb |
-      Then the file "app/views/layouts/application.html.erb" should contain "<title>MyApp</title>"
+      Then the file "app/views/layouts/application.html.erb" should contain "<title>AppName</title>"
     
     Scenario: Generate layout for signin and signup
-      And I have no layouts
-      And I successfully run "ruby script/generate theme --type=sign"
+      When I successfully run "ruby script/generate theme --type=sign"
       Then the following files should exist:
         | app/views/layouts/sign.html.erb |
   

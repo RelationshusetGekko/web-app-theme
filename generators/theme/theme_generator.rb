@@ -16,20 +16,32 @@ class ThemeGenerator < Rails::Generator::Base
       m.directory("app/views/layouts")
       m.directory("public/images/web-app-theme")      
       %w(cross key tick application_edit).each do |icon|
-        m.file("../../../images/icons/#{icon}.png", "public/images/web-app-theme/#{icon}.png")
+        m.file("../../images/icons/#{icon}.png", "public/images/web-app-theme/#{icon}.png")
       end            
       m.directory("public/stylesheets/themes/#{options[:theme]}/")
       m.template("view_layout_#{options[:layout_type]}.html.#{options[:engine]}", File.join("app/views/layouts", "#{@name}.html.#{options[:engine]}")) unless options[:no_layout]
-      m.template("../../../stylesheets/base.css",  File.join("public/stylesheets", "web_app_theme.css"))
+      m.template("../../stylesheets/base.css",  File.join("public/stylesheets", "web_app_theme.css"))
       m.template("web_app_theme_override.css",  File.join("public/stylesheets", "web_app_theme_override.css"))
-      m.template("../../../stylesheets/themes/#{options[:theme]}/style.css",  File.join("public/stylesheets/themes/#{options[:theme]}", "style.css"))      
+      m.template("../../stylesheets/themes/#{options[:theme]}/style.css",  File.join("public/stylesheets/themes/#{options[:theme]}", "style.css"))      
     end
   end
   
   def banner
     "Usage: #{$0} theme [layout_name] [options]"
   end
-
+  
+  def self.gem_root
+    File.expand_path('../../../', __FILE__)
+  end
+  
+  def self.source_root
+    File.join(gem_root, 'templates', 'theme')
+  end
+  
+  def source_root
+    self.class.source_root
+  end
+  
 protected
 
   def add_options!(opt)

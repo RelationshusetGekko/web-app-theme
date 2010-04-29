@@ -43,6 +43,18 @@ class ThemedGenerator < Rails::Generator::NamedBase
     end
   end
   
+  def self.gem_root
+    File.expand_path('../../../', __FILE__)
+  end
+  
+  def self.source_root
+    File.join(gem_root, 'templates', 'themed')
+  end
+  
+  def source_root
+    self.class.source_root
+  end
+  
 protected
   
   def manifest_for_crud(m)

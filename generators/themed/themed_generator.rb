@@ -22,6 +22,7 @@ class ThemedGenerator < Rails::Generator::NamedBase
   def initialize(runtime_args, runtime_options = {})
     super
     @controller_path  = runtime_args.shift
+    @table_name       = @controller_path
     @model_name       = runtime_args.shift
     @engine           = options[:engine]
   end

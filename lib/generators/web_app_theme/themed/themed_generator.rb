@@ -25,6 +25,7 @@ module WebAppTheme
     
     def manifest
       @controller_path = name
+      @table_name = name
       @engine = options[:engine]
       @plural_controller_path  = name
       @model_name       = singular_controller_routing_path

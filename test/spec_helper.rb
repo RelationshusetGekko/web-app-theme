@@ -1,6 +1,5 @@
 require "rubygems"
-require "rspec"
-gem "rails", "3.0.0.beta3"
-require "rails"
-require 'rails/generators'
-require File.dirname(__FILE__) + "/../lib/generators/web_app_theme/themed/themed_generator"
+require "spec"
+require "rails_generator"
+require "rails_generator/scripts/generate"
+require File.dirname(__FILE__) + "/../generators/themed/themed_generator"

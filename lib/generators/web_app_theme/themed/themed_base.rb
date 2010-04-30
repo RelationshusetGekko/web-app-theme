@@ -6,10 +6,11 @@ module WebAppTheme
     include GeneratorBase
     
     def run_generator
-      @controller_routing_path          = @controller_path
-      @singular_controller_routing_path = @controller_path.singularize
+      @controller_routing_path          = @table_name
+      @singular_controller_routing_path = @table_name.singularize
       base_name, @controller_class_path, @controller_file_path, @controller_class_nesting, @controller_class_nesting_depth = extract_modules(@controller_routing_path)
       @model_name = base_name.singularize unless @model_name
+      
       # Post
       @model_name           = @model_name.camelize 
       # Posts

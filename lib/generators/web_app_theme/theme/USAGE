@@ -1,4 +1,4 @@
-rails generate theme
-rails generate theme LayoutName
-rails generate theme --theme=ThemeName
-rails generate theme --no-layout
+rails g web_app_theme:theme
+rails g web_app_theme:theme LayoutName
+rails g web_app_theme:theme --theme=ThemeName
+rails g web_app_theme:theme --no-layout

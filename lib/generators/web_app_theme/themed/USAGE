@@ -1,4 +1,4 @@
-rails generate themed ControllerPath
-rails generate themed ControllerPath ModelName
-rails generate themed ControllerPath ModelName --layout=application
-rails generate themed ControllerPath ModelName --with_will_paginate
+rails g web_app_theme:themed ControllerPath
+rails g web_app_theme:themed ControllerPath ModelName
+rails g web_app_theme:themed ControllerPath ModelName --layout=application
+rails g web_app_theme:themed ControllerPath ModelName --will_paginate

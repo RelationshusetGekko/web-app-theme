@@ -10,8 +10,6 @@ module WebAppTheme
     class_option :engine, :default => :erb
 
     def create_layouts_dir
-      puts options
-      puts "layout_name=#{layout_name}"
       empty_directory "app/views/layouts"
     end
   
@@ -48,7 +46,7 @@ module WebAppTheme
     end
   
     def banner
-      "Usage: #{$0} theme [layout_name] [options]"
+      "Usage: #{$0} web_app_theme:theme [layout_name] [options]"
     end
     
     def self.gem_root

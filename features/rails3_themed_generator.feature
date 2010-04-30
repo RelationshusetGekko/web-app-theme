@@ -4,18 +4,19 @@ Feature: Theme generation
   
   Background:
     Given I am using rvm "1.8.7"
-    And I am using rvm gemset "web-app-theme-2.3.5"
-    When I successfully run "rails rails-2-app"
+    And I am using rvm gemset "web-app-theme-3"
+    When I successfully run "rails rails-3-app"
     Then it should pass with:
       """
-      create  README
+      README
       """
-    And I cd to "rails-2-app"
+    And I cd to "rails-3-app"
+    And I successfully run "bundle lock"
     And I symlink this repo to "vendor/plugins/web-app-theme"
   
     Scenario: Creating CRUD views with controller path
-      Given a model "Post"
-      When I successfully run "ruby script/generate themed posts"
+      Given a rails 3 model "Post"
+      When I successfully run "rails g web_app_theme:themed posts"
       Then the following files should exist:
         | app/views/posts/index.html.erb |
         | app/views/posts/new.html.erb |
@@ -23,8 +24,8 @@ Feature: Theme generation
         | app/views/posts/edit.html.erb |
 
     Scenario: Creating CRUD views with controller path and model name
-      Given a model "Post"
-      When I successfully run "ruby script/generate themed items Post"
+      Given a rails 3 model "Post"
+      When I successfully run "rails g web_app_theme:themed items Post"
       Then the following files should exist:
         | app/views/items/index.html.erb |
         | app/views/items/new.html.erb |
@@ -32,8 +33,8 @@ Feature: Theme generation
         | app/views/items/edit.html.erb |
   
     Scenario: Creating CRUD views with controller path "admin/items" and model name
-      Given a model "Post"
-      When I successfully run "ruby script/generate themed admin/items Post"
+      Given a rails 3 model "Post"
+      When I successfully run "rails g web_app_theme:themed admin/items Post"
       Then the following files should exist:
         | app/views/admin/items/index.html.erb |
         | app/views/admin/items/new.html.erb |
@@ -41,8 +42,8 @@ Feature: Theme generation
         | app/views/admin/items/edit.html.erb |
   
     Scenario: Creating CRUD views with controller path "admin/gallery_pictures"
-      And a model "GalleryPicture"
-      When I successfully run "ruby script/generate themed admin/gallery_pictures"
+      And a rails 3 model "GalleryPicture"
+      When I successfully run "rails g web_app_theme:themed admin/gallery_pictures"
       Then the following files should exist:
         | app/views/admin/gallery_pictures/index.html.erb |
         | app/views/admin/gallery_pictures/new.html.erb |
@@ -50,14 +51,14 @@ Feature: Theme generation
         | app/views/admin/gallery_pictures/edit.html.erb |
   
     Scenario: Creating text theme
-      When I successfully run "ruby script/generate themed homes --type=text"
+      When I successfully run "rails g web_app_theme:themed homes --type=text"
       Then the following files should exist:
         | app/views/homes/show.html.erb |
         | app/views/homes/_sidebar.html.erb |
 
     Scenario: Creating CRUD views with controller path and haml
-      Given a model "Post"
-      When I successfully run "ruby script/generate themed posts --engine=haml"
+      Given a rails 3 model "Post"
+      When I successfully run "rails g web_app_theme:themed posts --engine=haml"
       Then the following files should exist:
         | app/views/posts/index.html.haml |
         | app/views/posts/new.html.haml |
@@ -65,6 +66,6 @@ Feature: Theme generation
         | app/views/posts/edit.html.haml |
 
     Scenario: Creating CRUD views with controller path and will paginate
-      Given a model "Post"
-      When I successfully run "ruby script/generate themed posts --with_will_paginate"
+      Given a rails 3 model "Post"
+      When I successfully run "rails g web_app_theme:themed posts --will-paginate"
       Then the file "app/views/posts/index.html.erb" should contain "will_paginate"

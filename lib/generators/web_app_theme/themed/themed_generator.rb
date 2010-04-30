@@ -9,6 +9,7 @@ module WebAppTheme
     class_option :type, :default => :crud
     class_option :include_layout
     class_option :will_paginate, :default => false
+    class_option :engine, :default => :erb
   
     argument :singular_controller_routing_path, :required => false
   
@@ -17,8 +18,18 @@ module WebAppTheme
     argument :plural_model_name, :required => false
     argument :resource_name, :required => false
     argument :plural_resource_name, :required => false
-  
+    
+    attr_reader :controller_routing_path, 
+                :singular_controller_routing_path,
+                :columns,
+                :model_name,
+                :plural_model_name,
+                :resource_name,
+                :plural_resource_name,
+                :engine
+    
     def manifest
+      @engine = options[:engine]
       @plural_controller_path  = name
       @model_name       = singular_controller_routing_path
     
@@ -54,12 +65,12 @@ module WebAppTheme
     def manifest_for_crud
       @columns = []
       empty_directory(File.join('app/views', @controller_file_path))
-      template('view_tables.html.erb',  File.join("app/views", @controller_file_path, "index.html.erb"))
-      template('view_new.html.erb',     File.join("app/views", @controller_file_path, "new.html.erb"))
-      template('view_edit.html.erb',    File.join("app/views", @controller_file_path, "edit.html.erb"))
-      template('view_form.html.erb',    File.join("app/views", @controller_file_path, "_form.html.erb"))
-      template('view_show.html.erb',    File.join("app/views", @controller_file_path, "show.html.erb"))
-      template('view_sidebar.html.erb', File.join("app/views", @controller_file_path, "_sidebar.html.erb"))
+      template("view_tables.html.#{@engine}",  File.join("app/views", @controller_file_path, "index.html.#{@engine}"))
+      template("view_new.html.#{@engine}",     File.join("app/views", @controller_file_path, "new.html.#{@engine}"))
+      template("view_edit.html.#{@engine}",    File.join("app/views", @controller_file_path, "edit.html.#{@engine}"))
+      template("view_form.html.#{@engine}",    File.join("app/views", @controller_file_path, "_form.html.#{@engine}"))
+      template("view_show.html.#{@engine}",    File.join("app/views", @controller_file_path, "show.html.#{@engine}"))
+      template("view_sidebar.html.#{@engine}", File.join("app/views", @controller_file_path, "_sidebar.html.#{@engine}"))
     
       if options[:include_layout]
         gsub_file(File.join("app/views/layouts", "application.html.erb"), /\<div\s+id=\"main-navigation\">.*\<\/ul\>/mi) do |match|
@@ -73,14 +84,14 @@ module WebAppTheme
       signup_controller_path  = @controller_file_path
       signin_controller_path  = @model_name.downcase # just here I use the second argument as a controller path
       @resource_name          = @controller_routing_path.singularize
-      m.template('view_signup.html.erb',  File.join("app/views", signup_controller_path, "new.html.erb"))
-      m.template('view_signin.html.erb',  File.join("app/views", signin_controller_path, "new.html.erb"))
+      m.template("view_signup.html.#{@engine}",  File.join("app/views", signup_controller_path, "new.html.#{@engine}"))
+      m.template("view_signin.html.#{@engine}",  File.join("app/views", signin_controller_path, "new.html.#{@engine}"))
     end
   
     def manifest_for_text
-      directory(File.join('app/views', @controller_file_path))    
-      template('view_text.html.erb', File.join("app/views", @controller_file_path, "show.html.erb"))
-      template('view_sidebar.html.erb', File.join("app/views", @controller_file_path, "_sidebar.html.erb"))
+      empty_directory(File.join('app/views', @controller_file_path))    
+      template("view_text.html.#{@engine}", File.join("app/views", @controller_file_path, "show.html.erb"))
+      template("view_sidebar.html.#{@engine}", File.join("app/views", @controller_file_path, "_sidebar.html.erb"))
     end
   
     def get_columns
@@ -89,7 +100,7 @@ module WebAppTheme
     end
   
     def banner
-      "Usage: #{$0} themed ControllerPath [ModelName] [options]"
+      "Usage: #{$0} web_app_theme:themed ControllerPath [ModelName] [options]"
     end
   
     def extract_modules(name)

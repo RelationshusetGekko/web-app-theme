@@ -11,6 +11,7 @@ Feature: Rails 3 layout generation
       README
       """
     And I cd to "rails-3-app"
+    And I successfully run "bundle lock"
     And I symlink this repo to "vendor/plugins/web-app-theme"
     And I have no layouts
     And I have no stylesheets

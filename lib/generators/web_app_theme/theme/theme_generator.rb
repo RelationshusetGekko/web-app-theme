@@ -1,3 +1,5 @@
+require File.join(File.dirname(__FILE__), 'theme_base')
+
 module WebAppTheme
   class ThemeGenerator < Rails::Generators::Base
   
@@ -8,42 +10,21 @@ module WebAppTheme
     class_option :app_name, :default => 'Web App'
     class_option :no_layout, :type => :boolean, :default => false
     class_option :engine, :default => :erb
-
-    def create_layouts_dir
-      empty_directory "app/views/layouts"
+    
+    def generate
+      @name = layout_name || (options[:type] == "sign" ? "sign" : "application")
+      rails3!
+      create_layouts_dir
+      create_images_dir
+      copy_images
+      create_theme_dir
+      copy_layout
+      copy_base_stylesheet
+      copy_theme_override
+      copy_theme_stylesheet
     end
-  
-    def create_images_dir
-      empty_directory "public/images/web-app-theme"
-    end
-  
-    def copy_images
-      %w(cross key tick application_edit).each do |icon|
-        copy_file("../../images/icons/#{icon}.png", "public/images/web-app-theme/#{icon}.png")
-      end
-    end
-  
-    def create_theme_dir
-      empty_directory "public/stylesheets/themes/#{options[:theme]}/"
-    end
-  
-    def copy_layout
-      @layout_name = layout_name.nil? ? "application" : layout_name
-      @name = options[:type].to_s == "sign" ? "sign" : (layout_name.nil? ? "application" : layout_name)
-      template "view_layout_#{options[:type]}.html.#{options[:engine]}", File.join('app/views/layouts', "#{@name}.html.erb") unless options[:no_layout]
-    end
-  
-    def copy_base_stylesheet
-      template("../../stylesheets/base.css",  File.join("public/stylesheets", "web_app_theme.css"))
-    end
-  
-    def copy_theme_override
-      copy_file("web_app_theme_override.css",  File.join("public/stylesheets", "web_app_theme_override.css"))
-    end
-  
-    def copy_theme_stylesheet
-      copy_file("../../stylesheets/themes/#{options[:theme]}/style.css",  File.join("public/stylesheets/themes/#{options[:theme]}", "style.css"))
-    end
+    
+    include ThemeBase
   
     def banner
       "Usage: #{$0} web_app_theme:theme [layout_name] [options]"

@@ -18,23 +18,7 @@ class ThemeGenerator < Rails::Generator::Base
   def manifest
     record do |m|
       rails2!(m)
-      create_layouts_dir
-      create_images_dir
-      copy_images
-      create_theme_dir
-      copy_layout
-      copy_base_stylesheet
-      copy_theme_override
-      copy_theme_stylesheet
-      
-      # %w(cross key tick application_edit).each do |icon|
-      #   m.file("../../images/icons/#{icon}.png", "public/images/web-app-theme/#{icon}.png")
-      # end            
-      # 
-      # m.template("view_layout_#{options[:layout_type]}.html.#{options[:engine]}", File.join("app/views/layouts", "#{@name}.html.#{options[:engine]}")) unless options[:no_layout]
-      # m.template("../../stylesheets/base.css",  File.join("public/stylesheets", "web_app_theme.css"))
-      # m.template("web_app_theme_override.css",  File.join("public/stylesheets", "web_app_theme_override.css"))
-      # m.template("../../stylesheets/themes/#{options[:theme]}/style.css",  File.join("public/stylesheets/themes/#{options[:theme]}", "style.css"))      
+      run_generator    
     end
   end
   

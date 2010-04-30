@@ -14,14 +14,7 @@ module WebAppTheme
     def generate
       @name = layout_name || (options[:type] == "sign" ? "sign" : "application")
       rails3!
-      create_layouts_dir
-      create_images_dir
-      copy_images
-      create_theme_dir
-      copy_layout
-      copy_base_stylesheet
-      copy_theme_override
-      copy_theme_stylesheet
+      run_generator
     end
     
     include ThemeBase

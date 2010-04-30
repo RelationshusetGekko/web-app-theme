@@ -4,11 +4,7 @@ Feature: Rails 3 layout generation
   
   Background:
     Given I am using rvm "1.8.7"
-    And I am using rvm gemset "web-app-theme-2.3.5" with Gemfile:
-      """
-      gem 'rails', '3.0.0.beta3'
-      gem 'sqlite3-ruby', '1.2.5'
-      """
+    And I am using rvm gemset "web-app-theme-3"
     When I successfully run "rails rails-3-app"
     Then it should pass with:
       """

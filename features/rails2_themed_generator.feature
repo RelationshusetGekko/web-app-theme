@@ -4,11 +4,7 @@ Feature: Theme generation
   
   Background:
     Given I am using rvm "1.8.7"
-    And I am using rvm gemset "web-app-theme-2.3.5" with Gemfile:
-      """
-      gem 'rails', '2.3.5'
-      gem 'sqlite3-ruby', '1.2.5'
-      """
+    And I am using rvm gemset "web-app-theme-2.3.5"
     When I successfully run "rails rails-2-app"
     Then it should pass with:
       """

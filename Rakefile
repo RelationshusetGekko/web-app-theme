@@ -26,3 +26,28 @@ begin
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
+
+require 'aruba/api'
+
+class GemsetsForTesting
+  include Aruba::Api
+  def setup
+    use_rvm "1.8.7"
+    use_rvm_gemset "web-app-theme-2.3.5", false
+    install_gems """
+    gem 'rails', '2.3.5'
+    gem 'sqlite3-ruby', '1.2.5'
+    """
+
+    use_rvm "1.8.7"
+    use_rvm_gemset "web-app-theme-3", false
+    install_gems """
+    gem 'rails', '3.0.0.beta3'
+    gem 'sqlite3-ruby', '1.2.5'
+    """
+  end
+end
+
+task :setup_gemsets do
+  GemsetsForTesting.new.setup
+end

@@ -1,22 +1,25 @@
-<h1><%= options[:app_name] %></h1>
+%h1
+  <%= options[:app_name] %>
 .block#block-login
-  <h2>Login Box</h2>        
+  %h2
+    Login Box
   .content.login
     .flash
-      = flash.each do |type, message|
+      - flash.each do |type, message|
         .message{:class => type.to_s}
-          %p= message
+          %p
+            = message
     - form_tag({:action => :create}, :class => 'form login') do
       .group.wat-cf
         .left
-          <label class="label right">Login</label>
+          = label_tag :login, 'Login', :class => 'label right'
         .right
           = text_field_tag :login, @login, :class => 'text_field'
       .group.wat-cf
         .left
-          <label class="label right">Password</label>
+          = label_tag :password, 'Password', :class => 'label right'
         .right
           = password_field_tag :password, nil, :class => 'text_field'
       .group.navform.wat-cf
         .right
-          <input type="submit" class="button" value="Sign in" />
+          = submit_tag 'Sign in', :class => 'button'

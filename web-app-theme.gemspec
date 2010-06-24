@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrea Franz"]
-  s.date = %q{2010-01-11}
+  s.date = %q{2010-06-24}
   s.description = %q{Web app theme generator for rails projects}
   s.email = %q{andrea@gravityblast.com}
   s.extra_rdoc_files = [
@@ -24,11 +24,18 @@ Gem::Specification.new do |s|
      "VERSION",
      "config/locales/de_de.yml",
      "config/locales/pt_br.yml",
-     "features/step_definitions/layout_steps.rb",
+     "features/rails2_theme_generator.feature",
+     "features/rails2_themed_generator.feature",
+     "features/rails3_theme_generator.feature",
+     "features/rails3_themed_generator.feature",
+     "features/step_definitions/shared_steps.rb",
+     "features/step_definitions/theme_steps.rb",
      "features/step_definitions/themed_steps.rb",
      "features/support/env.rb",
-     "features/theme_generator.feature",
-     "features/themed_generator.feature",
+     "generators/theme/USAGE",
+     "generators/theme/theme_generator.rb",
+     "generators/themed/USAGE",
+     "generators/themed/themed_generator.rb",
      "images/avatar.png",
      "images/icons/application_edit.png",
      "images/icons/cross.png",
@@ -38,24 +45,15 @@ Gem::Specification.new do |s|
      "javascripts/jquery-1.3.min.js",
      "javascripts/jquery.localscroll.js",
      "javascripts/jquery.scrollTo.js",
-     "lib/web_app_theme.rb",
-     "rails_generators/theme/USAGE",
-     "rails_generators/theme/templates/view_layout_administration.html.erb",
-     "rails_generators/theme/templates/view_layout_sign.html.erb",
-     "rails_generators/theme/templates/web_app_theme_override.css",
-     "rails_generators/theme/theme_generator.rb",
-     "rails_generators/themed/USAGE",
-     "rails_generators/themed/templates/view_edit.html.erb",
-     "rails_generators/themed/templates/view_form.html.erb",
-     "rails_generators/themed/templates/view_new.html.erb",
-     "rails_generators/themed/templates/view_show.html.erb",
-     "rails_generators/themed/templates/view_sidebar.html.erb",
-     "rails_generators/themed/templates/view_signin.html.erb",
-     "rails_generators/themed/templates/view_signup.html.erb",
-     "rails_generators/themed/templates/view_tables.html.erb",
-     "rails_generators/themed/templates/view_text.html.erb",
-     "rails_generators/themed/themed_generator.rb",
+     "lib/generators/web_app_theme/generator_base.rb",
+     "lib/generators/web_app_theme/theme/USAGE",
+     "lib/generators/web_app_theme/theme/theme_base.rb",
+     "lib/generators/web_app_theme/theme/theme_generator.rb",
+     "lib/generators/web_app_theme/themed/USAGE",
+     "lib/generators/web_app_theme/themed/themed_base.rb",
+     "lib/generators/web_app_theme/themed/themed_generator.rb",
      "stylesheets/base.css",
+     "stylesheets/themes/amro/style.css",
      "stylesheets/themes/bec-green/style.css",
      "stylesheets/themes/bec/style.css",
      "stylesheets/themes/blue/style.css",
@@ -67,6 +65,29 @@ Gem::Specification.new do |s|
      "stylesheets/themes/orange/style.css",
      "stylesheets/themes/reidb-greenish/style.css",
      "stylesheets/themes/warehouse/style.css",
+     "templates/theme/view_layout_administration.html.erb",
+     "templates/theme/view_layout_administration.html.haml",
+     "templates/theme/view_layout_sign.html.erb",
+     "templates/theme/view_layout_sign.html.haml",
+     "templates/theme/web_app_theme_override.css",
+     "templates/themed/view_edit.html.erb",
+     "templates/themed/view_edit.html.haml",
+     "templates/themed/view_form.html.erb",
+     "templates/themed/view_form.html.haml",
+     "templates/themed/view_new.html.erb",
+     "templates/themed/view_new.html.haml",
+     "templates/themed/view_show.html.erb",
+     "templates/themed/view_show.html.haml",
+     "templates/themed/view_sidebar.html.erb",
+     "templates/themed/view_sidebar.html.haml",
+     "templates/themed/view_signin.html.erb",
+     "templates/themed/view_signin.html.haml",
+     "templates/themed/view_signup.html.erb",
+     "templates/themed/view_signup.html.haml",
+     "templates/themed/view_tables.html.erb",
+     "templates/themed/view_tables.html.haml",
+     "templates/themed/view_text.html.erb",
+     "templates/themed/view_text.html.haml",
      "test/spec_helper.rb",
      "test/themed_generator_spec.rb",
      "web-app-theme.gemspec"
@@ -74,7 +95,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/pilu/web-app-theme}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{Web app theme generator}
   s.test_files = [
     "test/spec_helper.rb",
@@ -85,7 +106,7 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
     else
     end
   else

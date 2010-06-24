@@ -9,12 +9,12 @@
         = link_to t("web-app-theme.show", :default => "Show"), <%= singular_controller_routing_path %>_path
   .content
     .inner
-      <% columns.each do |column| -%>
+<%- columns.each do |column| -%>
       %p
         %b
           = t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= column.name %>", :default => t("activerecord.labels.<%= column.name %>", :default => "<%= column.name.humanize %>")) + ":"
         = @<%= resource_name %>.<%= column.name %>
-      <% end -%>
+<%- end -%>
       .wat-cf
         = link_to edit_<%= singular_controller_routing_path %>_path(@<%= resource_name %>), :class => "button" do
           = image_tag("web-app-theme/application_edit.png", :alt => t("web-app-theme.edit", :default=> "Edit"))

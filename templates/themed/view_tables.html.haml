@@ -14,10 +14,10 @@
         %tr
           %th.first
             ID
-          <% unless columns.empty? -%>
+<%- unless columns.empty? -%>
           %th
             = t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= columns.first.name %>", :default => t("activerecord.labels.<%= columns.first.name %>", :default => "<%= columns.first.name.capitalize %>"))
-          <% end -%>
+<%- end -%>
           %th
             = t("web-app-theme.created_at", :default => "Created at")
           %th.last
@@ -26,10 +26,10 @@
           %tr{:class => cycle("odd", "even")}
             %td
               = <%= resource_name %>.id
-            <% unless columns.empty? -%>
+<%- unless columns.empty? -%>
             %td
               = link_to <%= resource_name %>.<%= columns.first.name %>, <%= singular_controller_routing_path %>_path(<%= resource_name %>)
-            <% end -%>
+<%- end -%>
             %td
               = <%= resource_name %>.created_at
             %td.last
@@ -40,8 +40,8 @@
               = link_to t("web-app-theme.delete", :default => "Delete"), <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => t("web-app-theme.confirm", :default => "Are you sure?")
       .actions-bar.wat-cf
         .actions
-        <% if options[:will_paginate] -%>
+<%- if options[:will_paginate] -%>
           = will_paginate @<%= plural_resource_name %>
-        <% end -%>
+<%- end -%>
 
 - content_for :sidebar, render(:partial => 'sidebar')

@@ -2,3 +2,4 @@ rails g web_app_theme:themed ControllerPath
 rails g web_app_theme:themed ControllerPath ModelName
 rails g web_app_theme:themed ControllerPath ModelName --layout=application
 rails g web_app_theme:themed ControllerPath ModelName --will_paginate
+rails g web_app_theme:themed ControllerPath ModelName --engine=haml

@@ -6,10 +6,10 @@
   .content.login
     .flash
       - flash.each do |type, message|
-        .message{:class => type.to_s}
+        .message{ :class => type.to_s }
           %p
             = message
-    - form_tag({:action => :create}, :class => 'form login') do
+    - form_tag { :action => :create }, :class => 'form login' do
       .group.wat-cf
         .left
           = label_tag :login, 'Login', :class => 'label right'

@@ -6,9 +6,9 @@
   .content
     .flash
       - flash.each do |type, message|
-        .message{:class => type.to_s}
+        .message{ :class => type.to_s }
           %p
-            =  message
+            = message
     - form_for :<%= resource_name %>, :url => <%= controller_routing_path %>_path, :html => { :class => 'form' } do |f|
       .group.wat-cf
         .left

@@ -7,7 +7,7 @@
         = link_to t("web-app-theme.new", :default => "New"), new_<%= singular_controller_routing_path %>_path
   .content
     %h2.title
-      = t("web-app-theme.all", :default => "All")
+      = t "web-app-theme.all", :default => "All"
       <%= plural_model_name %>
     .inner
       %table.table
@@ -16,14 +16,13 @@
             ID
 <%- unless columns.empty? -%>
           %th
-            = t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= columns.first.name %>", :default => t("activerecord.labels.<%= columns.first.name %>", :default => "<%= columns.first.name.capitalize %>"))
+            = t "activerecord.attributes.<%= singular_controller_routing_path %>.<%= columns.first.name %>", :default => t("activerecord.labels.<%= columns.first.name %>", :default => "<%= columns.first.name.capitalize %>")
 <%- end -%>
           %th
-            = t("web-app-theme.created_at", :default => "Created at")
+            = t "web-app-theme.created_at", :default => "Created at"
           %th.last
-            &nbsp;
         - @<%= plural_resource_name %>.each do |<%= resource_name %>|
-          %tr{:class => cycle("odd", "even")}
+          %tr{ :class => cycle("odd", "even") }
             %td
               = <%= resource_name %>.id
 <%- unless columns.empty? -%>

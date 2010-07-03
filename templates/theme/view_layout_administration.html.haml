@@ -12,13 +12,13 @@
         #user-navigation
           %ul.wat-cf
             %li
-              = link_to "#" do
+              - link_to "#" do
                 = t "web-app-theme.profile", :default => "Profile"
             %li
-              = link_to "#" do
+              - link_to "#" do
                 = t "web-app-theme.settings", :default => "Settings"
             %li
-              = link_to "/logout", :class => "logout" do
+              - link_to "/logout", :class => "logout" do
                 = t "web-app-theme.logout", :default => "Logout"
         #main-navigation
           %ul.wat-cf

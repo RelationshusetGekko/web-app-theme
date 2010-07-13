@@ -9,7 +9,7 @@
         .message{ :class => type.to_s }
           %p
             = message
-    - form_for :<%= resource_name %>, :url => <%= controller_routing_path %>_path, :html => { :class => 'form' } do |f|
+    = form_for :<%= resource_name %>, :url => <%= controller_routing_path %>_path, :html => { :class => 'form' } do |f|
       .group.wat-cf
         .left
           = f.label :login, 'Login', :class => "label"

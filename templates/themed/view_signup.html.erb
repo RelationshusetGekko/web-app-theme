@@ -9,7 +9,7 @@
       </div>
       <%% end -%>
     </div>
-    <%% form_for :<%= resource_name %>, :url => <%= controller_routing_path %>_path, :html => { :class => 'form' } do |f| -%>
+    <%%= form_for :<%= resource_name %>, :url => <%= controller_routing_path %>_path, :html => { :class => 'form' } do |f| -%>
       <div class="group wat-cf">
         <div class="left">
           <%%= label_tag :login, 'Login', :class => 'label' %>

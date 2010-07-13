@@ -10,7 +10,7 @@
       = t "web-app-theme.new", :default => "New"
       <%= model_name %>
     .inner
-      - form_for @<%= model_name.underscore  %>, :url => <%= controller_routing_path %>_path, :html => { :class => :form } do |f|
+      = form_for @<%= model_name.underscore  %>, :url => <%= controller_routing_path %>_path, :html => { :class => :form } do |f|
         = render :partial => "form", :object => f
 
 - content_for :sidebar, render(:partial => 'sidebar')
